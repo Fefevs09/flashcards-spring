@@ -2,6 +2,7 @@ package com.flashcardsspring.Flashcards.services;
 
 import com.flashcardsspring.Flashcards.domain.Deck;
 import com.flashcardsspring.Flashcards.repositories.DeckRepository;
+import com.flashcardsspring.Flashcards.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,9 @@ public class DeckService {
 
     public Deck findById(Long id) {
         Optional<Deck> deck = deckRepository.findById(id);
-        return deck.orElse(null);
+        if(deck.isEmpty()) {
+            throw new ObjectNotFoundException("Deck Não Encontrado! Id: " + id);
+        }
+        return deck.get();
     }
 }

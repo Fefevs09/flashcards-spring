@@ -2,10 +2,12 @@ package com.flashcardsspring.Flashcards.services;
 
 import com.flashcardsspring.Flashcards.domain.User;
 import com.flashcardsspring.Flashcards.repositories.UserRepository;
+import com.flashcardsspring.Flashcards.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +23,9 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> user = userRepository.findById(id);
-        return user.orElse(null);
+        if(user.isEmpty()){
+            throw new ObjectNotFoundException("Usuário Não Encontrado! Id: " + id);
+        }
+        return user.get();
     }
 }
