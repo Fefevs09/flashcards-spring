@@ -1,7 +1,10 @@
 package com.flashcardsspring.Flashcards.config;
 
+import com.flashcardsspring.Flashcards.domain.Card;
 import com.flashcardsspring.Flashcards.domain.Deck;
 import com.flashcardsspring.Flashcards.domain.User;
+import com.flashcardsspring.Flashcards.domain.enums.Feedback;
+import com.flashcardsspring.Flashcards.repositories.CardRepository;
 import com.flashcardsspring.Flashcards.repositories.DeckRepository;
 import com.flashcardsspring.Flashcards.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private DeckRepository deckRepository;
+
+    @Autowired
+    private CardRepository cardRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -44,6 +50,7 @@ public class TestConfig implements CommandLineRunner {
         deck1.setName("Deck 1");
         deck1.setUser(user1);
 
+
         Deck deck2 = new Deck();
         deck2.setDeck_id(null);
         deck2.setName("Deck 2");
@@ -55,7 +62,37 @@ public class TestConfig implements CommandLineRunner {
         deck3.setUser(user2);
 
 
+        Card card1 = new Card();
+        card1.setCard_id(null);
+        card1.setQuestion("Qual é o valor de PI?");
+        card1.setAnswer("3.14");
+        card1.setFeedback(Feedback.EASY);
+        card1.setDeck(deck1);
+
+        Card card2 = new Card();
+        card2.setCard_id(null);
+        card2.setQuestion("Qual é a raiz quadrada de 25?");
+        card2.setAnswer("5");
+        card2.setFeedback(Feedback.MEDIUM);
+        card2.setDeck(deck1);
+
+
+        Card card3 = new Card();
+        card3.setCard_id(null);
+        card3.setQuestion("100 graus correspondem a quantos Farenheit??");
+        card3.setAnswer("212 F");
+        card3.setFeedback(Feedback.HARD);
+        card3.setDeck(deck2);
+
+        Card card4 = new Card();
+        card4.setCard_id(null);
+        card4.setQuestion("sla?");
+        card4.setAnswer("12 S");
+        card4.setFeedback(Feedback.EASY);
+        card4.setDeck(deck3);
+
         userRepository.saveAll(Arrays.asList(user1, user2, user3));
         deckRepository.saveAll(Arrays.asList(deck1, deck2, deck3));
+        cardRepository.saveAll(Arrays.asList(card1, card2, card3, card4));
     }
 }
