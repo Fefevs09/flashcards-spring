@@ -18,6 +18,7 @@ public class Card {
     private Long card_id;
     private String question;
     private String answer;
+    @Enumerated(EnumType.STRING)
     private Feedback feedback;
 
     @ManyToOne

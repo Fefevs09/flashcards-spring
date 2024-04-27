@@ -19,12 +19,10 @@ public class Deck {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long deck_id;
     private String name;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
-
     @OneToMany(mappedBy = "deck")
     List<Card> cards = new ArrayList<>();
 }
