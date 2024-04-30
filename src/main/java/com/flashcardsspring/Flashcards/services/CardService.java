@@ -1,14 +1,17 @@
 package com.flashcardsspring.Flashcards.services;
 
 import com.flashcardsspring.Flashcards.domain.Card;
-import com.flashcardsspring.Flashcards.domain.User;
+import com.flashcardsspring.Flashcards.dto.request.CardRequestDTO;
+import com.flashcardsspring.Flashcards.dto.response.CardResponseDTO;
 import com.flashcardsspring.Flashcards.repositories.CardRepository;
-import com.flashcardsspring.Flashcards.repositories.UserRepository;
-import com.flashcardsspring.Flashcards.services.exceptions.ObjectNotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,15 +20,20 @@ public class CardService {
     @Autowired
     private CardRepository cardRepository;
 
-    public List<Card> findAll(){
-        return cardRepository.findAll();
+    @Autowired
+    private ModelMapper modelMapper;
+
+    public Page<CardResponseDTO> findAll(Pageable page) {
+        return cardRepository.findAll(page).map(card -> modelMapper.map(card, CardResponseDTO.class));
     }
 
-    public Card findById(Long id) {
-        Optional<Card> card = cardRepository.findById(id);
-        if(card.isEmpty()){
-            throw new ObjectNotFoundException("Card Não Encontrado! Id: " + id);
-        }
-        return card.get();
+    public CardResponseDTO findById(Long id) {
+        var card = cardRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return modelMapper.map(card, CardResponseDTO.class);
+    }
+
+    public CardResponseDTO createCard(CardRequestDTO card) {
+        var entity = cardRepository.save(modelMapper.map(card, Card.class));
+        return modelMapper.map(entity, CardResponseDTO.class);
     }
 }

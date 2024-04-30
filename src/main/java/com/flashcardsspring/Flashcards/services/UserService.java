@@ -4,13 +4,13 @@ import com.flashcardsspring.Flashcards.domain.User;
 import com.flashcardsspring.Flashcards.dto.request.UserRequestDTO;
 import com.flashcardsspring.Flashcards.dto.response.UserResponseDTO;
 import com.flashcardsspring.Flashcards.repositories.UserRepository;
-import com.flashcardsspring.Flashcards.services.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.server.ResponseStatusException;
 
 
 @Service
@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public UserResponseDTO findById(Long id) {
-        var user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado! Id: " + id));
+        var user = userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return modelMapper.map(user, UserResponseDTO.class);
     }
 

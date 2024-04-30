@@ -1,5 +1,7 @@
 package com.flashcardsspring.Flashcards.dto.request;
 
+
+import com.flashcardsspring.Flashcards.domain.enums.Feedback;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -11,14 +13,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRequestDTO {
+public class CardRequestDTO {
     @NotNull
     @NotBlank
-    private String name;
+    private String question;
     @NotNull
     @NotBlank
-    private String email;
+    private String answer;
     @NotNull
     @NotBlank
-    private String password;
+    private Feedback feedback;
 }

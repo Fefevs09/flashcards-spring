@@ -1,15 +1,16 @@
 package com.flashcardsspring.Flashcards.resources;
 
 import com.flashcardsspring.Flashcards.domain.Card;
+import com.flashcardsspring.Flashcards.dto.request.CardRequestDTO;
+import com.flashcardsspring.Flashcards.dto.response.CardResponseDTO;
 import com.flashcardsspring.Flashcards.services.CardService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
@@ -21,14 +22,21 @@ public class CardResource {
 
 
     @GetMapping
-    public ResponseEntity<List<Card>> findAll() {
-        List<Card> cards = cardService.findAll();
-        return ResponseEntity.ok().body(cards);
+    public ResponseEntity<Page<CardResponseDTO>> findAll(Pageable page) {
+        var response = cardService.findAll(page);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Card> findById(@PathVariable Long id) {
-        Card card = cardService.findById(id);
-        return ResponseEntity.ok().body(card);
+    public ResponseEntity<CardResponseDTO> findById(@PathVariable Long id) {
+        var response = cardService.findById(id);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> createCard(@RequestBody @Valid CardRequestDTO card, UriComponentsBuilder builder) {
+        var response = cardService.createCard(card);
+        var uri = builder.path("/cards/{id}").buildAndExpand(response.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }

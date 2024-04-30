@@ -4,7 +4,6 @@ import com.flashcardsspring.Flashcards.domain.Deck;
 import com.flashcardsspring.Flashcards.dto.request.DeckRequestDTO;
 import com.flashcardsspring.Flashcards.dto.response.DeckResponseDTO;
 import com.flashcardsspring.Flashcards.repositories.DeckRepository;
-import com.flashcardsspring.Flashcards.services.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
