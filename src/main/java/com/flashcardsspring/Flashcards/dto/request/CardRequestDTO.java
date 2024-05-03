@@ -1,7 +1,9 @@
 package com.flashcardsspring.Flashcards.dto.request;
 
-
+import com.flashcardsspring.Flashcards.domain.Deck;
 import com.flashcardsspring.Flashcards.domain.enums.Feedback;
+import com.flashcardsspring.Flashcards.dto.response.DeckIdResponseDTO;
+import com.flashcardsspring.Flashcards.dto.response.DeckResponseDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -21,6 +23,7 @@ public class CardRequestDTO {
     @NotBlank
     private String answer;
     @NotNull
-    @NotBlank
     private Feedback feedback;
+    @NotNull
+    private DeckIdResponseDTO deckIdResponseDTO;
 }

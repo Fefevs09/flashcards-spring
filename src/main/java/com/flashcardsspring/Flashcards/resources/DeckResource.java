@@ -20,7 +20,6 @@ public class DeckResource {
     @Autowired
     private DeckService deckService;
 
-
     @GetMapping
     public ResponseEntity<Page<DeckResponseDTO>> getDecks(Pageable page) {
         var response = deckService.getDecks(page);

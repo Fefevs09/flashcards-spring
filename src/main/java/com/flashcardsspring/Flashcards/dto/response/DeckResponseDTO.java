@@ -19,6 +19,5 @@ import java.util.List;
 public class DeckResponseDTO {
     private Long deck_id;
     private String name;
-    private User user;
     List<Card> cards = new ArrayList<>();
 }

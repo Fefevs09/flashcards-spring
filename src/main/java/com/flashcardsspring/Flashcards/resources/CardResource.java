@@ -3,7 +3,9 @@ package com.flashcardsspring.Flashcards.resources;
 import com.flashcardsspring.Flashcards.domain.Card;
 import com.flashcardsspring.Flashcards.dto.request.CardRequestDTO;
 import com.flashcardsspring.Flashcards.dto.response.CardResponseDTO;
+import com.flashcardsspring.Flashcards.dto.response.DeckResponseDTO;
 import com.flashcardsspring.Flashcards.services.CardService;
+import com.flashcardsspring.Flashcards.services.DeckService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +21,8 @@ public class CardResource {
 
     @Autowired
     private CardService cardService;
+
+    private DeckResponseDTO responseDTO;
 
 
     @GetMapping
