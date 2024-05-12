@@ -16,4 +16,6 @@ public class DeckRequestDTO {
     @NotNull
     @NotBlank
     private String name;
+    @NotNull
+    private UserIdRequestDTO userIdRequestDTO;
 }

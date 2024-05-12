@@ -1,6 +1,5 @@
 package com.flashcardsspring.Flashcards.dto.request;
 
-import com.flashcardsspring.Flashcards.domain.enums.Feedback;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -12,15 +11,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CardRequestDTO {
+public class UserRequestUpdateDTO {
     @NotNull
     @NotBlank
-    private String question;
-    @NotNull
-    @NotBlank
-    private String answer;
-    @NotNull
-    private Feedback feedback;
-    @NotNull
-    private DeckIdRequestDTO deckIdRequestDTO;
+    private String name;
 }

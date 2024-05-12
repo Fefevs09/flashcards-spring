@@ -1,4 +1,4 @@
-package com.flashcardsspring.Flashcards.dto.response;
+package com.flashcardsspring.Flashcards.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeckIdResponseDTO {
+public class DeckIdRequestDTO {
     private Long deck_id;
 }

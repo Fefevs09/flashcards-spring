@@ -2,6 +2,7 @@ package com.flashcardsspring.Flashcards.services;
 
 import com.flashcardsspring.Flashcards.domain.User;
 import com.flashcardsspring.Flashcards.dto.request.UserRequestDTO;
+import com.flashcardsspring.Flashcards.dto.request.UserRequestUpdateDTO;
 import com.flashcardsspring.Flashcards.dto.response.UserResponseDTO;
 import com.flashcardsspring.Flashcards.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -33,5 +34,11 @@ public class UserService {
     public UserResponseDTO createUser(UserRequestDTO userRequestDTO) {
         var entity = userRepository.save(modelMapper.map(userRequestDTO, User.class));
         return modelMapper.map(entity, UserResponseDTO.class);
+    }
+
+    public void updateUser(Long id, UserRequestUpdateDTO user) {
+        var entity = userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        modelMapper.map(user, entity);
+        userRepository.save(entity);
     }
 }

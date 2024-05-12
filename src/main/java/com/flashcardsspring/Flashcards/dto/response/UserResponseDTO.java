@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,4 +18,5 @@ public class UserResponseDTO {
     private Long id;
     private String name;
     private String email;
+    private List<DeckResponseDTO> decks  = new ArrayList<>();
 }

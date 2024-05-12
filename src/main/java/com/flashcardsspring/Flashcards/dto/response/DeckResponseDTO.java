@@ -2,7 +2,6 @@ package com.flashcardsspring.Flashcards.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.flashcardsspring.Flashcards.domain.Card;
-import com.flashcardsspring.Flashcards.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +18,5 @@ import java.util.List;
 public class DeckResponseDTO {
     private Long deck_id;
     private String name;
-    List<Card> cards = new ArrayList<>();
+    private List<Card> cards = new ArrayList<>();
 }
