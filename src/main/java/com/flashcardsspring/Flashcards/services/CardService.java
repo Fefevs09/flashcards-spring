@@ -3,6 +3,7 @@ package com.flashcardsspring.Flashcards.services;
 import com.flashcardsspring.Flashcards.domain.Card;
 import com.flashcardsspring.Flashcards.domain.Deck;
 import com.flashcardsspring.Flashcards.dto.request.CardRequestDTO;
+import com.flashcardsspring.Flashcards.dto.request.CardRequestUpdateDTO;
 import com.flashcardsspring.Flashcards.dto.response.CardResponseDTO;
 import com.flashcardsspring.Flashcards.repositories.CardRepository;
 import com.flashcardsspring.Flashcards.repositories.DeckRepository;
@@ -44,5 +45,11 @@ public class CardService {
         }
         var entity = cardRepository.save(modelMapper.map(card, Card.class));
         return modelMapper.map(entity, CardResponseDTO.class);
+    }
+
+    public void updateCard(Long id, CardRequestUpdateDTO card) {
+        var entity = cardRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        modelMapper.map(card, entity);
+        cardRepository.save(entity);
     }
 }

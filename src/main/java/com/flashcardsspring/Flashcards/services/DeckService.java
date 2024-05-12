@@ -2,6 +2,7 @@ package com.flashcardsspring.Flashcards.services;
 
 import com.flashcardsspring.Flashcards.domain.Deck;
 import com.flashcardsspring.Flashcards.dto.request.DeckRequestDTO;
+import com.flashcardsspring.Flashcards.dto.request.DeckRequestUpdateDTO;
 import com.flashcardsspring.Flashcards.dto.response.DeckResponseDTO;
 import com.flashcardsspring.Flashcards.repositories.DeckRepository;
 import org.modelmapper.ModelMapper;
@@ -34,5 +35,11 @@ public class DeckService {
     public DeckResponseDTO createDeck(DeckRequestDTO deck) {
         var entity  = deckRepository.save(modelMapper.map(deck, Deck.class));
         return modelMapper.map(entity, DeckResponseDTO.class);
+    }
+
+    public void updateDeck(Long id, DeckRequestUpdateDTO deck) {
+        var entity = deckRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        modelMapper.map(deck, entity);
+        deckRepository.save(entity);
     }
 }

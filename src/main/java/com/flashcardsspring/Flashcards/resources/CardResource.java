@@ -2,6 +2,7 @@ package com.flashcardsspring.Flashcards.resources;
 
 import com.flashcardsspring.Flashcards.domain.Card;
 import com.flashcardsspring.Flashcards.dto.request.CardRequestDTO;
+import com.flashcardsspring.Flashcards.dto.request.CardRequestUpdateDTO;
 import com.flashcardsspring.Flashcards.dto.response.CardResponseDTO;
 import com.flashcardsspring.Flashcards.dto.response.DeckResponseDTO;
 import com.flashcardsspring.Flashcards.services.CardService;
@@ -42,5 +43,11 @@ public class CardResource {
         var response = cardService.createCard(card);
         var uri = builder.path("/cards/{id}").buildAndExpand(response.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> updateCard(@PathVariable Long id, @RequestBody CardRequestUpdateDTO card) {
+        cardService.updateCard(id, card);
+        return ResponseEntity.noContent().build();
     }
 }

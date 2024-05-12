@@ -2,6 +2,7 @@ package com.flashcardsspring.Flashcards.resources;
 
 import com.flashcardsspring.Flashcards.domain.Deck;
 import com.flashcardsspring.Flashcards.dto.request.DeckRequestDTO;
+import com.flashcardsspring.Flashcards.dto.request.DeckRequestUpdateDTO;
 import com.flashcardsspring.Flashcards.dto.response.DeckResponseDTO;
 import com.flashcardsspring.Flashcards.services.DeckService;
 import jakarta.validation.Valid;
@@ -37,5 +38,11 @@ public class DeckResource {
         var response = deckService.createDeck(deck);
         var uri = builder.path("/decks/{id}").buildAndExpand(response.getDeck_id()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> updateDeck(@PathVariable Long id, @RequestBody @Valid DeckRequestUpdateDTO deck) {
+        deckService.updateDeck(id, deck);
+        return ResponseEntity.noContent().build();
     }
 }
