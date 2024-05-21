@@ -23,6 +23,6 @@ public class Deck {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
-    @OneToMany(mappedBy = "deck")
+    @OneToMany(mappedBy = "deck", cascade = CascadeType.ALL)
     List<Card> cards = new ArrayList<>();
 }

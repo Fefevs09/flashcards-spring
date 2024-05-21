@@ -50,4 +50,10 @@ public class CardResource {
         cardService.updateCard(id, card);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteCard(@PathVariable Long id) {
+        cardService.deleteCard(id);
+        return ResponseEntity.noContent().build();
+    }
 }

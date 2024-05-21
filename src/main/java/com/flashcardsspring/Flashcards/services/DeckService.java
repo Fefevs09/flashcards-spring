@@ -42,4 +42,9 @@ public class DeckService {
         modelMapper.map(deck, entity);
         deckRepository.save(entity);
     }
+
+    public void deleteDeck(Long id) {
+        var entity = deckRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        deckRepository.delete(entity);
+    }
 }

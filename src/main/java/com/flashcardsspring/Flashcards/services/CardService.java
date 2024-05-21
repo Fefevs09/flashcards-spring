@@ -52,4 +52,9 @@ public class CardService {
         modelMapper.map(card, entity);
         cardRepository.save(entity);
     }
+
+    public void deleteCard(Long id){
+        var entity = cardRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        cardRepository.delete(entity);
+    }
 }

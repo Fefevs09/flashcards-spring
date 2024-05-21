@@ -45,4 +45,10 @@ public class DeckResource {
         deckService.updateDeck(id, deck);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteDeck(@PathVariable Long id) {
+        deckService.deleteDeck(id);
+        return ResponseEntity.noContent().build();
+    }
 }

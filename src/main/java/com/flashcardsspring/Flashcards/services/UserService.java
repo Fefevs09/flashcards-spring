@@ -41,4 +41,9 @@ public class UserService {
         modelMapper.map(user, entity);
         userRepository.save(entity);
     }
+
+    public void deleteUser(Long id) {
+        var entity = userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        userRepository.delete(entity);
+    }
 }
