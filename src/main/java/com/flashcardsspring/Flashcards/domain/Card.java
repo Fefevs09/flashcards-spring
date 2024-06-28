@@ -14,8 +14,8 @@ import lombok.*;
 @EqualsAndHashCode(of = "card_id")
 public class Card {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long card_id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String card_id;
     private String question;
     private String answer;
     @Enumerated(EnumType.STRING)

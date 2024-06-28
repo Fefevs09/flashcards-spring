@@ -10,5 +10,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserIdRequestDTO {
-    private Long user_id;
+    private String user_id;
 }

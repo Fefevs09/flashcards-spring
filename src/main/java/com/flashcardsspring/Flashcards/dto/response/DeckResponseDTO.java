@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DeckResponseDTO {
-    private Long deck_id;
+    private String deck_id;
     private String name;
     private List<Card> cards = new ArrayList<>();
 }

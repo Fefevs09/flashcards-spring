@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserResponseDTO {
-    private Long id;
+    private String id;
     private String name;
     private String email;
     private List<DeckResponseDTO> decks  = new ArrayList<>();
