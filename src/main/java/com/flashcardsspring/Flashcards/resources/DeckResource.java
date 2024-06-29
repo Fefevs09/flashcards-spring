@@ -34,10 +34,9 @@ public class DeckResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createDeck(@RequestBody @Valid DeckRequestDTO deck, UriComponentsBuilder builder) {
+    public ResponseEntity<DeckResponseDTO> createDeck(@RequestBody @Valid DeckRequestDTO deck, UriComponentsBuilder builder) {
         var response = deckService.createDeck(deck);
-        var uri = builder.path("/decks/{id}").buildAndExpand(response.getDeck_id()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping(value = "/{id}")

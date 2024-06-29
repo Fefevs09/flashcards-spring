@@ -7,12 +7,5 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserRequestUpdateDTO {
-    @NotNull
-    @NotBlank
-    private String name;
+public record UserRequestUpdateDTO(@NotNull @NotBlank String name) {
 }

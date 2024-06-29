@@ -9,14 +9,5 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserResponseDTO {
-    private String id;
-    private String name;
-    private String email;
-    private List<DeckResponseDTO> decks  = new ArrayList<>();
+public record UserResponseDTO(String id, String name, String email, List<DeckResponseDTO> decks) {
 }

@@ -38,8 +38,9 @@ public class CardService {
         return modelMapper.map(card, CardResponseDTO.class);
     }
 
+    // TODO: modify the createCard method params to accept a deckId
     public CardResponseDTO createCard(CardRequestDTO card) {
-        Optional<Deck> deck = deckRepository.findById(card.getDeckIdRequestDTO().getDeck_id());
+        Optional<Deck> deck = deckRepository.findById(card.deckIdRequestDTO().deck_id());
         if (deck.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Deck not found");
         }
