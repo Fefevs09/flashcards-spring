@@ -10,13 +10,5 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class DeckResponseDTO {
-    private Long deck_id;
-    private String name;
-    private List<Card> cards = new ArrayList<>();
+public record DeckResponseDTO(String deck_id, String name, List<Card> cards) {
 }

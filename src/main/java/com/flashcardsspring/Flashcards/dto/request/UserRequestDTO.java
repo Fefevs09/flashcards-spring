@@ -7,18 +7,5 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserRequestDTO {
-    @NotNull
-    @NotBlank
-    private String name;
-    @NotNull
-    @NotBlank
-    private String email;
-    @NotNull
-    @NotBlank
-    private String password;
+public record UserRequestDTO(@NotNull @NotBlank String name, @NotNull @NotBlank String email, @NotNull @NotBlank String password) {
 }

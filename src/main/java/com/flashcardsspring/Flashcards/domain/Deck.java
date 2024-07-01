@@ -16,8 +16,8 @@ import java.util.List;
 @EqualsAndHashCode(of = "deck_id")
 public class Deck {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long deck_id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String deck_id;
     private String name;
     @ManyToOne
     @JoinColumn(name = "user_id")

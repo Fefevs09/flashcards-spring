@@ -7,12 +7,5 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class DeckRequestUpdateDTO {
-    @NotNull
-    @NotBlank
-    private String name;
+public record DeckRequestUpdateDTO(@NotNull @NotBlank String name) {
 }

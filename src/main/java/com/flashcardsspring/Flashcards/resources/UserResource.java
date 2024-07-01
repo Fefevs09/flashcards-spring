@@ -36,10 +36,9 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createUser(@RequestBody @Valid UserRequestDTO user, UriComponentsBuilder builder) {
-        var response = userService.createUser(user);
-        var uri = builder.path("users/{id}").buildAndExpand(response.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+    public ResponseEntity<UserResponseDTO> createUser(@RequestBody @Valid UserRequestDTO user, UriComponentsBuilder builder) {
+        UserResponseDTO response = userService.createUser(user);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping(value = "/{id}")

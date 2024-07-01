@@ -39,10 +39,9 @@ public class CardResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createCard(@RequestBody @Valid CardRequestDTO card, UriComponentsBuilder builder) {
-        var response = cardService.createCard(card);
-        var uri = builder.path("/cards/{id}").buildAndExpand(response.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+    public ResponseEntity<CardResponseDTO> createCard(@RequestBody @Valid CardRequestDTO card, UriComponentsBuilder builder) {
+        CardResponseDTO response = cardService.createCard(card);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping(value = "/{id}")

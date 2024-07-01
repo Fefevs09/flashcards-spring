@@ -8,19 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class CardRequestDTO {
-    @NotNull
-    @NotBlank
-    private String question;
-    @NotNull
-    @NotBlank
-    private String answer;
-    @NotNull
-    private Feedback feedback;
-    @NotNull
-    private DeckIdRequestDTO deckIdRequestDTO;
+public record CardRequestDTO(@NotNull @NotBlank String question, @NotNull @NotBlank String answer, @NotNull Feedback feedback, @NotNull DeckIdRequestDTO deckIdRequestDTO) {
+
 }
